@@ -9,7 +9,7 @@ export default function SearchAndFilter()
                     <Search className="h-3 w-3 text-gray-400" />
                 </div>
                 <input 
-                    className="pl-8 pr-8 py-2 border text-sm border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-green-500 focus:border-green-500 bg-white text-gray-900 placeholder-gray-500 transition-all duration-200 ease-in-out hover:border-gray-200" 
+                    className="pl-8 pr-8 py-2 border text-sm border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-green-500 focus:border-green-500  whitespace-nowrap text-gray-900 placeholder-gray-500 transition-all duration-200 ease-in-out hover:border-gray-200" 
                     type="text" 
                     placeholder="Search users..." 
                 />

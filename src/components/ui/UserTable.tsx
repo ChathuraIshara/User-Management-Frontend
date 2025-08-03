@@ -1,13 +1,5 @@
 import { Edit, Trash2, MoreHorizontal } from "lucide-react";
-
-interface User {
-    id: number;
-    name: string;
-    email: string;
-    role: string;
-    status: 'Active' | 'Inactive';
-    created: string;
-}
+import type { User } from "../../types";
 
 const mockUsers: User[] = [
     {
