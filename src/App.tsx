@@ -4,7 +4,7 @@ import Index from './pages'
 
 function App() {
   return (
-    <div className="app">
+    <div className="app p-6">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
