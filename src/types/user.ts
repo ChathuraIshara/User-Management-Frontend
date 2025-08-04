@@ -1,10 +1,10 @@
 export interface User {
-    id: number;
+    _id: number;
     name: string;
     email: string;
     role: string;
     status: 'Active' | 'Inactive';
-    created: string;
+    createdAt: string;
 }
 
 export interface CreateUserRequest {
