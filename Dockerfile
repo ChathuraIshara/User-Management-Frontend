@@ -16,8 +16,6 @@ COPY . .
 # Accept build argument for API URL
 ARG VITE_API_BASE_URL
 
-# Set environment variable from build argument
-ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
 
 # Build the project
 RUN npm run build
