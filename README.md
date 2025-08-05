@@ -1,69 +1,135 @@
-# React + TypeScript + Vite
+# User Management Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + TypeScript frontend application for managing users with full CRUD operations, built with Vite and styled with Tailwind CSS.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🔐 User Management (Create, Read, Update, Delete)
+- 🎨 Modern UI with Tailwind CSS
+- 📱 Responsive Design
+- ✅ Form Validation
+- 🔄 Real-time Updates
+- 🎯 Modal Components
+- 🐳 Docker Support
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Frontend:** React 18 + TypeScript
+- **Build Tool:** Vite
+- **Styling:** Tailwind CSS
+- **HTTP Client:** Axios (assumed)
+- **Containerization:** Docker
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Prerequisites
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- Node.js 20+ 
+- npm or yarn
+- Docker (for containerized deployment)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Running Locally
+
+### 1. Clone the Repository
+
+```bash
+git clone <your-repo-url>
+cd user-api-frontend
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install Dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+### 3. Environment Setup
+
+Create a `.env` file in the root directory:
+
+```env
+VITE_API_BASE_URL=api/usersDemo
+```
+
+### 4. Start Development Server
+
+```bash
+npm run dev
+```
+
+The application will be available at: `http://localhost:5173`
+
+### 5. Build for Production
+
+```bash
+npm run build
+npm run preview
+```
+
+## Running with Docker
+
+### Option 1: Quick Start (Uses Default Local API)
+
+```bash
+# Build the Docker image
+docker build --build-arg VITE_API_BASE_URL=http://localhost:5000/api/usersDemo -t user-api-frontend .
+
+# Run the container
+docker run --name user-frontend -p 3000:3000 user-api-frontend
+```
+
+The application will be available at: `http://localhost:3000`
+
+
+## Environment Variables
+
+| Variable | Description | Default | Required |
+|----------|-------------|---------|----------|
+| `VITE_API_BASE_URL` | Backend API base URL | None | ✅ |
+
+### Environment Examples
+
+```bash
+# Local Development
+VITE_API_BASE_URL=http://localhost:5000/api/usersDemo
+```
+
+
+
+## Project Structure
+
+```
+├── public/                 # Static assets
+├── src/
+│   ├── components/        # React components
+│   ├── assets/           # Images, icons
+│   ├── App.tsx           # Main app component
+│   └── main.tsx          # Entry point
+├── Dockerfile            # Docker configuration
+├── .dockerignore         # Docker ignore rules
+├── vite.config.ts        # Vite configuration
+├── package.json          # Dependencies
+└── README.md            # This file
+```
+
+## Development Workflow
+
+### Local Development
+1. Start your backend API server on `localhost:5000`
+2. Run `npm run dev`
+3. Access frontend at `http://localhost:5173`
+
+### Docker Development
+1. Start your backend API server on your host machine
+2. Run container and access at `http://localhost:3000`
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test locally and with Docker
+5. Submit a pull request
+
+**Need Help?** 
+- Check the troubleshooting section above
+- Review Docker logs: `docker logs user-frontend`
+- Ensure your backend API is running and accessible
