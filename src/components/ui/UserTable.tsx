@@ -16,6 +16,24 @@ interface UserTableProps {
   refreshTrigger: number;
 }
 
+// Type definitions for API responses
+interface PaginationData {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+}
+
+interface UserResponseWithData {
+  data: User[];
+  pagination?: PaginationData;
+}
+
+interface UserResponseWithUsers {
+  users: User[];
+  pagination?: PaginationData;
+}
+
 export default function UserTable({ refreshTrigger }: UserTableProps) {
   // State management
   const [users, setUsers] = useState<User[]>([]);
@@ -55,15 +73,17 @@ export default function UserTable({ refreshTrigger }: UserTableProps) {
         paginationData = { ...pagination, total: response.length };
       } else if (response && typeof response === "object") {
         // Response is an object
-        if (Array.isArray(response.data)) {
-          fetchedUsers = response.data;
-          paginationData = response.pagination || pagination;
+        if (Array.isArray((response as UserResponseWithData).data)) {
+          const dataResponse = response as UserResponseWithData;
+          fetchedUsers = dataResponse.data;
+          paginationData = dataResponse.pagination || pagination;
         } else if (
           "users" in response &&
-          Array.isArray((response as any).users)
+          Array.isArray((response as UserResponseWithUsers).users)
         ) {
-          fetchedUsers = (response as any).users;
-          paginationData = (response as any).pagination || pagination;
+          const usersResponse = response as UserResponseWithUsers;
+          fetchedUsers = usersResponse.users;
+          paginationData = usersResponse.pagination || pagination;
         }
       }
 
